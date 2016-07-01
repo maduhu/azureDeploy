@@ -177,7 +177,7 @@
             "sku": "[parameters('vmSpec').imageSKU]",
             "version": "[parameters('vmSpec').imageVersion]"
           },
-          "dataDisks": {
+          "dataDisk": {
             "name": "datadisk0",
             "diskSizeGB": "[parameters('vmSpec').segmentNodeDataDiskGB]",
             "lun": 0,
