@@ -4,7 +4,7 @@
   "parameters": {
     "clusterName": {
       "type": "string",
-      "defaultValue": "vgpdb",
+      "defaultValue": "sktemplategpdb",
       "metadata": {
         "description": "Cluster name"
       }
@@ -198,6 +198,7 @@
         "Standard_D2",
         "Standard_D3",
         "Standard_D4",
+        "Standard_DS1_v2",
         "Standard_DS12",
         "Standard_DS13",
         "Standard_DS14",
@@ -227,6 +228,7 @@
         "Standard_D2",
         "Standard_D3",
         "Standard_D4",
+        "Standard_DS1_v2",
         "Standard_DS12",
         "Standard_DS13",
         "Standard_DS14",
