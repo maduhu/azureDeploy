@@ -177,15 +177,17 @@
             "sku": "[parameters('vmSpec').imageSKU]",
             "version": "[parameters('vmSpec').imageVersion]"
           },
-          "dataDisk": {
-            "name": "datadisk0",
-            "diskSizeGB": "[parameters('vmSpec').segmentNodeDataDiskGB]",
-            "lun": 0,
-            "vhd": {
-              "Uri": "[concat(variables('diskVhdBaseName'), copyIndex(1), 'datadisk0.vhd')]"
-            },
-            "createOption": "Empty"
-          },
+          "dataDisks": [
+            {
+              "name": "datadisk0",
+              "diskSizeGB": "[parameters('vmSpec').segmentNodeDataDiskGB]",
+              "lun": 0,
+              "vhd": {
+                "Uri": "[concat(variables('diskVhdBaseName'), copyIndex(1), 'datadisk0.vhd')]"
+              },
+              "createOption": "Empty"
+            }
+          ],
           "osDisk": {
             "name": "osdisk",
             "vhd": {
