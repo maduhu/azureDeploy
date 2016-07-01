@@ -249,7 +249,7 @@
     },
     "masterNodeDisk" : {
       "type": "string",
-      "defaultValue": "20"
+      "defaultValue": "30"
     },
     "segmentNodeDisk" : {
       "type": "string",
