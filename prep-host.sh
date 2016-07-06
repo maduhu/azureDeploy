@@ -70,8 +70,16 @@ chkconfig fail2ban on
 yum install xfsprogs -y
 
 if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
-    # Stage the GPDB appliance tarball
-    curl -o /home/gpadmin/greenplum-db-appliance-4.3.8.1-build-1-RHEL5-x86_64.bin  -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4369/download
+    # Stage the GPDB tarball
+    curl -o /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip  -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4367/download
+
+    chown gpadmin:gpadmin /home/gpadmin/greenplum-db-*
+    chmod u+x /home/gpadmin/greenplum-db-*
+
+    sed -i 's/more <</cat <</g' /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
+    sed -i 's/agreed=/agreed=1/' /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
+    sed -i 's/pathVerification=/pathVerification=1/' /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
+    sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
 
     # Stage the GPCC tarball
     curl -o /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.zip -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1748/product_files/4517/download
