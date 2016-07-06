@@ -71,24 +71,28 @@ yum install xfsprogs -y
 
 if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
     # Stage the GPDB tarball
-    curl -o /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip  -d "" -H "Authorization: Token iCcyGdFCe5FnR1sFqJ1w" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4367/download
+    cd /home/gpadmin/
 
-    unzip /home/gpadmin/greenplum-db-*.zip
+    /usr/bin/curl -o /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip  -d "" -H "Authorization: Token iCcyGdFCe5FnR1sFqJ1w" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4367/download
 
-    chown gpadmin:gpadmin /home/gpadmin/greenplum-db-*
-    chmod u+x /home/gpadmin/greenplum-db-*
+    sleep 30
 
-    sed -i 's/more <</cat <</g' /home/gpadmin/greenplum-db-*.bin
-    sed -i 's/agreed=/agreed=1/' /home/gpadmin/greenplum-db-*.bin
-    sed -i 's/pathVerification=/pathVerification=1/' /home/gpadmin/greenplum-db-*.bin
-    sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /home/gpadmin/greenplum-db-*.bin
+    /usr/bin/unzip /home/gpadmin/greenplum-db-*.zip
+
+    /bin/chown gpadmin:gpadmin /home/gpadmin/greenplum-db-*
+    /bin/chmod u+x /home/gpadmin/greenplum-db-*
+
+    /bin/sed -i 's/more <</cat <</g' /home/gpadmin/greenplum-db-*.bin
+    /bin/sed -i 's/agreed=/agreed=1/' /home/gpadmin/greenplum-db-*.bin
+    /bin/sed -i 's/pathVerification=/pathVerification=1/' /home/gpadmin/greenplum-db-*.bin
+    /bin/sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /home/gpadmin/greenplum-db-*.bin
 
     sudo /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
 
     # Stage the GPCC tarball
-    curl -o /home/gpadmin/greenplum-cc-web-2.3.0-build-51-RHEL5-x86_64.zip -d "" -H "Authorization: Token iCcyGdFCe5FnR1sFqJ1w" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/5097/download
+    /usr/bin/curl -o /home/gpadmin/greenplum-cc-web-2.3.0-build-51-RHEL5-x86_64.zip -d "" -H "Authorization: Token iCcyGdFCe5FnR1sFqJ1w" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/5097/download
 
-    unzip /home/gpadmin/greenplum-cc-web-*.zip
+    /usr/bin/unzip /home/gpadmin/greenplum-cc-web-*.zip
 
     chown gpadmin:gpadmin /home/gpadmin/greenplum-cc-web-*
     chmod u+x /home/gpadmin/greenplum-cc-web-*
