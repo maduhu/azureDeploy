@@ -73,6 +73,8 @@ if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
     # Stage the GPDB tarball
     curl -o /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip  -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4367/download
 
+    unzip /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip
+
     chown gpadmin:gpadmin /home/gpadmin/greenplum-db-*
     chmod u+x /home/gpadmin/greenplum-db-*
 
@@ -81,11 +83,22 @@ if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
     sed -i 's/pathVerification=/pathVerification=1/' /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
     sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
 
+    /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
+
     # Stage the GPCC tarball
     curl -o /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.zip -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1748/product_files/4517/download
 
+    unzip /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.zip
+
     chown gpadmin:gpadmin /home/gpadmin/greenplum-db-appliance-*
     chmod u+x /home/gpadmin/greenplum-db-appliance-*
+
+    sed -i 's/more <</cat <</g' /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.bin
+    sed -i 's/agreed=/agreed=1/' /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.bin
+    sed -i 's/pathVerification=/pathVerification=1/' /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.bin
+    sed -i '/defaultInstallPath=/a installPath=${defaultInstallPath}' /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.bin
+    
+    /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.bin
 
     # Create a cluster deploy hostfile
     python -c "print 'mdw' ; print '\n'.join(['sdw{0}'.format(n+1) for n in range(${SEGMENTS})])" > /home/gpadmin/hostfile
