@@ -71,7 +71,7 @@ yum install xfsprogs -y
 
 if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
     # Stage the GPDB tarball
-    curl -o /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip  -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4367/download
+    curl -o /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip  -d "" -H "Authorization: Token iCcyGdFCe5FnR1sFqJ1w" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1683/product_files/4367/download
 
     unzip /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.zip
 
@@ -86,7 +86,7 @@ if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
     /home/gpadmin/greenplum-db-4.3.8.1-build-1-RHEL5-x86_64.bin
 
     # Stage the GPCC tarball
-    curl -o /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.zip -d "" -H "Authorization: Token ${APITOKEN}" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1748/product_files/4517/download
+    curl -o /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.zip -d "" -H "Authorization: Token iCcyGdFCe5FnR1sFqJ1w" -L https://network.pivotal.io/api/v2/products/pivotal-gpdb/releases/1748/product_files/4517/download
 
     unzip /home/gpadmin/greenplum-cc-web-2.1.0-build-36-RHEL5-x86_64.zip
 
