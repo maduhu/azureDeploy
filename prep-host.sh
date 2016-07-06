@@ -106,10 +106,11 @@ if [[ "${HOSTNAME}" == *"mdw"* ]] ; then
     sudo /home/gpadmin/greenplum-cc-web-2.3.0-build-51-RHEL5-x86_64.bin
 
     sudo chown -R gpadmin:gpadmin /usr/local/greenplum*
-    # Create a cluster deploy hostfile
-    python -c "print 'mdw' ; print '\n'.join(['sdw{0}'.format(n+1) for n in range(${SEGMENTS})])" > /home/gpadmin/hostfile
+    # Create a cluster deploy hostfiles
+    python -c "print 'mdw' ; print '\n'.join(['sdw{0}'.format(n+1) for n in range(${SEGMENTS})])" > /home/gpadmin/hosts.all
+    python -c "print '\n'.join(['sdw{0}'.format(n+1) for n in range(${SEGMENTS})])" > /home/gpadmin/hosts.segs
 
-    chown gpadmin:gpadmin /home/gpadmin/hostfile
+    chown gpadmin:gpadmin /home/gpadmin/hosts.*
 
     # Update system host file with segment hosts
     python -c "print '\n'.join(['10.4.0.{0} {1}'.format(ip, 'sdw{0}'.format(n+1)) for n, ip in enumerate(range(${SEGMENT_IP_BASE}, ${SEGMENT_IP_BASE} + ${SEGMENTS}))])" >> /etc/hosts
