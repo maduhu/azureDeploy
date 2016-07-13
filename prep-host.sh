@@ -49,23 +49,23 @@ EOF
 
 # Install an configure fail2ban for the script kiddies
 yum install epel-release -y
-yum install fail2ban -y
+#yum install fail2ban -y
 
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+#cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
-sed -ie "s|ignoreip = 127\.0\.0\.1/8|ignoreip = 127.0.0.1/8\nignoreip = ${IPADDR}/24|" /etc/fail2ban/jail.local
+#sed -ie "s|ignoreip = 127\.0\.0\.1/8|ignoreip = 127.0.0.1/8\nignoreip = ${IPADDR}/24|" /etc/fail2ban/jail.local
 
-echo -e "\n\n
-[ssh-iptables]
-enabled  = true
-filter   = sshd
-action   = iptables[name=SSH, port=ssh, protocol=tcp]
-logpath  = /var/log/secure
-maxretry = 5
-" >> /etc/fail2ban/jail.local 
+#echo -e "\n\n
+#[ssh-iptables]
+#enabled  = true
+#filter   = sshd
+#action   = iptables[name=SSH, port=ssh, protocol=tcp]
+#logpath  = /var/log/secure
+#maxretry = 5
+#" >> /etc/fail2ban/jail.local 
 
-service fail2ban start
-chkconfig fail2ban on
+#service fail2ban start
+#chkconfig fail2ban on
 
 yum install xfsprogs -y
 
@@ -247,7 +247,7 @@ net.ipv6.conf.default.disable_ipv6 = 1
 net.core.netdev_max_backlog = 10000
 net.core.rmem_max = 2097152
 net.core.wmem_max = 2097152
-vm.overcommit_memory = 2
+# vm.overcommit_memory = 2
 vm.overcommit_ratio = 100
 
 # Azure Networking Bits
